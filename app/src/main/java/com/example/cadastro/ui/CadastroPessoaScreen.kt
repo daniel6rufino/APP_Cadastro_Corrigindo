@@ -47,9 +47,15 @@ fun CadastroPessoaScreen(viewModel: PessoaViewModel) {
 
         // Mostrar a lista de pessoas cadastradas
         val pessoas by viewModel.todasAsPessoas.collectAsState(initial = emptyList())
+
         LazyColumn {
             items(pessoas) { pessoa ->
                 Text("Nome: ${pessoa.nome}, Idade: ${pessoa.idade}, CPF: ${pessoa.cpf}")
+                Button(onClick = {
+                    viewModel.deletarPessoa(pessoa.id)
+                }) {
+                    Text("Deletar")
+                }
             }
         }
     }
